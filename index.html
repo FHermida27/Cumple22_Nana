@@ -11,17 +11,16 @@
     <iframe src="music.html" style="display: none;" id="musicFrame"></iframe>
 
     <script>
-        // Intenta iniciar la música automáticamente
-        window.onload = function() {
+        function playMusic() {
             const musicFrame = document.getElementById('musicFrame');
             musicFrame.contentWindow.postMessage('play', '*');
         }
-        
-        // Detecta interacción del usuario y reproduce la música
-        document.addEventListener('click', function() {
-            const musicFrame = document.getElementById('musicFrame');
-            musicFrame.contentWindow.postMessage('play', '*');
-        }, { once: true }); // Solo se ejecuta una vez
+    
+        // Intenta reproducir cuando la página cargue
+        window.onload = playMusic;
+    
+        // Intenta reproducir con el primer clic
+        document.addEventListener('click', playMusic, { once: true });
     </script>
 
     <h1>¡Feliz Cumpleaños Hermana!</h1>

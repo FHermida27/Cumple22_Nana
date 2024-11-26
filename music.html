@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
 </head>
 <body>
@@ -24,7 +23,14 @@
             audio.src = "Audio de WhatsApp 2024-11-26 a las 15.25.07_35593d7b.mp3";
         }
         
-        // Resto del código igual...
+        // Escuchar mensajes del padre
+        window.addEventListener('message', function(event) {
+            if (event.data === 'play') {
+                audio.play().catch(function(error) {
+                    console.log("Error reproduciendo audio:", error);
+                });
+            }
+        });
     </script>
 </body>
 </html>
