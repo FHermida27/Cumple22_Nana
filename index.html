@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Hermana!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Iframe oculto para la música -->
+    <iframe src="music.html" style="display: none;" id="musicFrame"></iframe>
+
+    <script>
+        // Intenta iniciar la música automáticamente
+        window.onload = function() {
+            const musicFrame = document.getElementById('musicFrame');
+            musicFrame.contentWindow.postMessage('play', '*');
+        }
+        
+        // Detecta interacción del usuario y reproduce la música
+        document.addEventListener('click', function() {
+            const musicFrame = document.getElementById('musicFrame');
+            musicFrame.contentWindow.postMessage('play', '*');
+        }, { once: true }); // Solo se ejecuta una vez
+    </script>
+
+    <h1>¡Feliz Cumpleaños Hermana!</h1>
+    <div class="cake-container">
+        <div class="cake">
+            <div class="number">22</div>
+            <div class="flames">
+                <div class="flame"></div>
+                <div class="flame"></div>
+            </div>
+            <div class="candles">
+                <div class="candle"></div>
+                <div class="candle"></div>
+            </div>
+            <div class="layer layer-3"></div>
+            <div class="layer layer-2"></div>
+            <div class="layer layer-1"></div>
+        </div>
+    </div>
+
+    <div class="message">
+        Para mi querida hermana mayor:<br><br>
+        En este día tan especial, quiero celebrar todo lo que significas para mí.
+        Gracias por ser mi guía, mi apoyo y mi mejor amiga.
+        ¡Que este nuevo año de vida esté lleno de alegría, amor y éxitos!<br><br>
+        ¡Te quiero mucho!
+    </div>
+
+    <div class="button-container">
+        <a href="recuerdos.html" class="memory-button">
+            <i>📸</i>
+            Recuerdos
+        </a>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Determina aleatoriamente si el corazón aparecerá en la izquierda o derecha
+            const side = Math.random() < 0.5 ? 'left' : 'right';
+            heart.style[side] = '0';
+            
+            // Tamaño aleatorio para los corazones
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            // Posición vertical aleatoria
+            heart.style.top = Math.random() * 100 + 'vh';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

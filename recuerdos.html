@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuerdos</title>
+    <link rel="stylesheet" href="recuerdos.css">
+</head>
+<body>
+    <!-- Iframe oculto para la música -->
+    <iframe src="music.html" style="display: none;" id="musicFrame"></iframe>
+
+    <script>
+        // Intenta iniciar la música automáticamente
+        window.onload = function() {
+            const musicFrame = document.getElementById('musicFrame');
+            musicFrame.contentWindow.postMessage('play', '*');
+        }
+        
+        // Detecta interacción del usuario y reproduce la música
+        document.addEventListener('click', function() {
+            const musicFrame = document.getElementById('musicFrame');
+            musicFrame.contentWindow.postMessage('play', '*');
+        }, { once: true }); // Solo se ejecuta una vez
+    </script>
+    <header>
+        <h1>Momentos Especiales</h1>
+    </header>
+    <main>
+       <!-- Reemplaza el contenido de la galería con esto: -->
+<div class="gallery" id="gallery"></div>
+
+<script>
+    const gallery = document.getElementById('gallery');
+    
+    // Lista de frases personalizadas
+    const frases = [
+        "¡Feliz cumpleaños, hermana! Que este día esté lleno de amor y risas.",
+        "Gracias por ser la mejor hermana del mundo, ¡te quiero muchísimo!",
+        "Cada año que pasa, eres más increíble. ¡Feliz cumpleaños!",
+        "Hoy celebramos el regalo más hermoso de la vida: ¡Tú!",
+        "Que este nuevo año te traiga aún más alegrías y bendiciones. ¡Te lo mereces!",
+        "Feliz cumpleaños a mi mejor amiga, mi confidente, y mi hermana.",
+        "Tu cumpleaños es el recordatorio perfecto de lo afortunado que soy de tenerte como hermana.",
+        "¡Que el amor, la felicidad y los éxitos te acompañen siempre, hermana!",
+        "¡Feliz cumpleaños, hermosa! Gracias por ser una inspiración cada día.",
+        "Hoy es el día perfecto para celebrar a la persona más especial de mi vida. ¡Feliz cumpleaños!",
+        "El mejor regalo que la vida me dio fue tenerte como hermana. ¡Te adoro!",
+        "Que este nuevo año de vida traiga consigo miles de momentos felices. ¡Te lo deseo con todo mi corazón!",
+        "Feliz cumpleaños a la hermana que siempre sabe cómo hacerme sonreír.",
+        "Que tus sueños se hagan realidad hoy y siempre. ¡Feliz cumpleaños, hermana!",
+        "Cada día contigo es un regalo. Hoy celebramos tu existencia, ¡mi hermana favorita!",
+        "¡Feliz cumpleaños! Hoy celebramos tu vida y todo lo bueno que aportas al mundo.",
+        "Que tu corazón esté siempre lleno de amor, alegría y éxito. ¡Te quiero mucho, hermana!",
+        "¡Feliz cumpleaños a la mujer más maravillosa que conozco! Que este día sea tan especial como tú.",
+        "Los momentos más felices de mi vida siempre han sido a tu lado. ¡Feliz cumpleaños, hermana!",
+        "¡Hoy es el día perfecto para agradecerte por todo lo que eres! ¡Feliz cumpleaños!",
+        "Una hermana como tú merece el mejor cumpleaños de todos. ¡Que la vida te regale solo felicidad!",
+        "¡Hoy celebramos tu vida! Gracias por ser la mejor hermana y amiga que cualquiera podría desear.",
+        "¡Que tengas un cumpleaños tan brillante y hermoso como tú eres!",
+        "El mundo es un lugar mejor porque existes, hermana. ¡Feliz cumpleaños!",
+        "Que este día sea tan inolvidable como todos los momentos que hemos compartido. ¡Te amo!",
+        "¡Feliz cumpleaños a la reina de la familia! Que tu día esté lleno de risas y amor.",
+        "¡Otro año más de vida, otro año más de bendiciones! ¡Feliz cumpleaños, hermana!",
+        "No solo eres mi hermana, eres mi mejor amiga y mi más grande apoyo. ¡Feliz cumpleaños!",
+        "Hoy celebramos el inicio de un año nuevo lleno de oportunidades para ti. ¡Feliz cumpleaños!",
+        "¡Qué suerte tengo de tener una hermana como tú! Espero que tengas un cumpleaños tan increíble como tú eres.",
+        "Gracias por ser siempre mi guía y mi fuerza. ¡Te quiero mucho, hermana!",
+        "Que este nuevo año de vida esté lleno de momentos felices y memorias inolvidables. ¡Feliz cumpleaños!",
+        "¡A celebrar este día tan especial porque tú lo vales, hermana! ¡Feliz cumpleaños!",
+        "Hoy, en tu cumpleaños, quiero agradecerte por todos los momentos que me has dado. ¡Te quiero mucho!",
+        "¡Feliz cumpleaños a mi hermana increíble! Que cada día esté lleno de amor y magia.",
+        "Hoy es el día perfecto para recordar lo increíble que eres. ¡Feliz cumpleaños!",
+        "¡Feliz cumpleaños, hermana! Que este año te traiga todo lo que sueñas y más.",
+        "Gracias por estar siempre allí para mí. ¡Te deseo el cumpleaños más maravilloso!",
+        "Tu cumpleaños es el recordatorio perfecto de cuán afortunado soy por tenerte en mi vida. ¡Te amo!",
+        "¡Feliz cumpleaños! Gracias por compartir tu luz y amor con todos nosotros.",
+        "¡A seguir creciendo y brillando! Feliz cumpleaños a la hermana más increíble.",
+        "Que todos tus sueños se hagan realidad en este nuevo capítulo de tu vida. ¡Feliz cumpleaños!",
+        "Hoy celebramos tu existencia, tu bondad, tu amor y todo lo maravilloso que eres. ¡Feliz cumpleaños!",
+        "¡Gracias por ser la hermana mayor más asombrosa! Te deseo lo mejor hoy y siempre.",
+        "¡Feliz cumpleaños, hermana! Que este año de vida sea tan grandioso como tú lo eres para todos."
+    ];
+    
+    // Generar las imágenes con las frases
+    for(let i = 1; i <= 45; i++) {
+        const memory = document.createElement('div');
+        memory.className = 'memory';
+        
+        memory.innerHTML = `
+            <img src="IMG/${i}.jpg" alt="Imagen ${i}" loading="lazy">
+            <p>${frases[(i - 1) % frases.length]}</p> 
+        `;
+        
+        gallery.appendChild(memory);
+    }
+</script>
+    </main>
+    <footer>
+        <a href="index.html" class="back-button">⬅ Volver</a>
+    </footer>
+</body>
+</html>

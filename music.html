@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
+</head>
+<body>
+    <audio id="birthday-song" loop>
+        <source src="Audio de WhatsApp 2024-11-26 a las 15.25.07_35593d7b.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        const audio = document.getElementById('birthday-song');
+        
+        // Intenta reproducir automáticamente
+        window.onload = function() {
+            audio.play().catch(function(error) {
+                console.log("Reproducción automática bloqueada");
+            });
+        }
+        
+        // Escucha mensajes del padre
+        window.addEventListener('message', function(e) {
+            if (e.data === 'play') {
+                audio.play();
+            }
+        });
+    </script>
+</body>
+</html>
