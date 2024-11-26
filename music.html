@@ -2,29 +2,29 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
 </head>
 <body>
     <audio id="birthday-song" loop>
-        <source src="Audio de WhatsApp 2024-11-26 a las 15.25.07_35593d7b.mp3" type="audio/mpeg">
+        <source src="" type="audio/mpeg">
     </audio>
     
     <script>
         const audio = document.getElementById('birthday-song');
         
-        // Intenta reproducir automáticamente
-        window.onload = function() {
-            audio.play().catch(function(error) {
-                console.log("Reproducción automática bloqueada");
-            });
+        // Obtener el parámetro de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const song = urlParams.get('song');
+        
+        // Establecer la fuente de audio según el parámetro
+        if (song === 'given') {
+            audio.src = "given.mp3";
+        } else {
+            audio.src = "Audio de WhatsApp 2024-11-26 a las 15.25.07_35593d7b.mp3";
         }
         
-        // Escucha mensajes del padre
-        window.addEventListener('message', function(e) {
-            if (e.data === 'play') {
-                audio.play();
-            }
-        });
+        // Resto del código igual...
     </script>
 </body>
 </html>
